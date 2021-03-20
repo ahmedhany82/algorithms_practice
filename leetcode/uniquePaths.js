@@ -15,7 +15,9 @@
 // console.log(uniquePaths(51,9))  //1916797311  Times out
 
 
-/* Using memoization */
+/* Using memoization
+   Time complexity: O(m*n)
+   Space complexity: O(m+n) */
 
 const uniquePaths = function(m, n, memo={}) {
     const key = m + ',' + n;

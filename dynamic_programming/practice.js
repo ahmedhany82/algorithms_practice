@@ -86,19 +86,37 @@ const canSum = (targetSum, numbers) => {
     return table[targetSum];
 }
 
-console.log(canSum(7, [2, 3]));         //true
-console.log(canSum(7, [5, 3, 4, 7]));   //true
-console.log(canSum(7, [2, 4]));         //false
-console.log(canSum(8, [2, 3, 5]));      //true
-console.log(canSum(300, [7, 14]));      //false
+// console.log(canSum(7, [2, 3]));         //true
+// console.log(canSum(7, [5, 3, 4, 7]));   //true
+// console.log(canSum(7, [2, 4]));         //false
+// console.log(canSum(8, [2, 3, 5]));      //true
+// console.log(canSum(300, [7, 14]));      //false
+
+
+// howSum tabulation
+
+const howSum = (targetSum, numbers) => {
+
+    const table = Array(targetSum + 1).fill(null);
+    table[0] = [];
+
+    for(let i = 0; i < table.length; i++) {
+        if(table[i] !== null) {
+            for(let number of numbers) {
+                if(i + number < table.length) table[i + number] = [...table[i], number];
+            }
+        }
+    }
+    return table[targetSum];
+}
 
 
 
-
-
-
-
-
+console.log(howSum(7, [2, 3]));         // [3, 2, 2]
+console.log(howSum(7, [5, 3, 4, 7]));   // [4, 3]
+console.log(howSum(7, [2, 4]));         // null
+console.log(howSum(8, [2, 3, 5]));      // [2, 2, 2, 2]
+console.log(howSum(300, [7, 14]));      // null
 
 
 

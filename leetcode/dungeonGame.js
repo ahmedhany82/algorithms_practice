@@ -2,6 +2,9 @@
 
 const calculateMinimumHP = dungeon => {
 
+
+    if(dungeon.length === 0) return 0;
+
     const rows = dungeon.length;
     const cols = dungeon[0].length;
 
@@ -19,7 +22,7 @@ const calculateMinimumHP = dungeon => {
 
     for(let i = rows-2; i >= 0; i--) {
         for(let j = cols-2; j >= 0; j--) {
-            dungeon[i][j] = Math.min(Math.max(dungeon[i][i+1], dungeon[i][j+1]) + dungeon[i][j],0); //check the need for min
+            dungeon[i][j] = Math.min(Math.max(dungeon[i+1][j], dungeon[i][j+1]) + dungeon[i][j],0);
          }
     }
 
@@ -28,3 +31,4 @@ const calculateMinimumHP = dungeon => {
 
 console.log(calculateMinimumHP([[-2,-3,3],[-5,-10,1],[10,30,-5]])); // 7
 console.log(calculateMinimumHP([[0]])); // 1
+console.log(calculateMinimumHP([[0,-5],[0,0]])) //1

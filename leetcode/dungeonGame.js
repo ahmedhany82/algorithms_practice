@@ -5,24 +5,25 @@ const calculateMinimumHP = dungeon => {
     const rows = dungeon.length;
     const cols = dungeon[0].length;
 
-    for(let i = 1; i < rows; i++) {
-        dungeon[i][0] += dungeon[i-1][0]; 
+    dungeon[rows-1][cols-1] = Math.min(dungeon[rows-1][cols-1], 0);
+
+    // last row
+    for(let j = cols-2; j >= 0; j--) {
+        dungeon[rows-1][j] = Math.min(dungeon[rows-1][j] + dungeon[rows-1][j+1], 0);   
     }
 
-    for(let j = 1; j < cols; j++) {
-        dungeon[0][j] += dungeon[0][j-1];  
+    // last col
+    for(let i = rows-2; i >= 0; i--) {
+        dungeon[i][cols-1] = Math.min( dungeon[i][cols-1] + dungeon[i+1][cols-1] , 0);  
     }
 
-    for(let i = 1; i < rows; i++) {
-        for(let j = 1; j < cols; j++) {
-            const before = dungeon[i][j] + dungeon[i][j-1];
-            const above = dungeon[i][j] + dungeon[i-1][j];
-            dungeon[i][j] = ( Math.abs(before) < Math.abs(above) ? before : above );
-        }
+    for(let i = rows-2; i >= 0; i--) {
+        for(let j = cols-2; j >= 0; j--) {
+            dungeon[i][j] = Math.min(Math.max(dungeon[i][i+1], dungeon[i][j+1]) + dungeon[i][j],0); //check the need for min
+         }
     }
 
-    return (dungeon[rows-1][cols-1] <= 0 ? Math.abs(dungeon[rows-1][cols-1]) + 1 : dungeon[rows-1][rows-1]);
-
+    return Math.abs(dungeon[0][0]) + 1;
 };
 
 console.log(calculateMinimumHP([[-2,-3,3],[-5,-10,1],[10,30,-5]])); // 7

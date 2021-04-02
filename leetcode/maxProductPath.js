@@ -10,33 +10,23 @@ const maxProductPath = function(grid) {
     grid[rows-1][cols-1] = {max: grid[rows-1][cols-1], min: grid[rows-1][cols-1]};
 
     for(let i=rows-2; i>=0; i--) {
-        // grid[i][cols-1] *= grid[i+1][cols-1];
         grid[i][cols-1] = {max: grid[i][cols-1] * grid[i+1][cols-1].max, min: grid[i][cols-1] * grid[i+1][cols-1].min};
     }
 
     for(let j=cols-2; j>=0; j--) {
-        // grid[rows-1][j] *= grid[rows-1][j+1];
         grid[rows-1][j] = {max: grid[rows-1][j+1].max * grid[rows-1][j], min: grid[rows-1][j+1].min * grid[rows-1][j]};
     }
 
     for(let i = rows-2; i >= 0; i--) {
         for(let j = cols-2; j >= 0; j--) {
-            // grid[i][j] = Math.max(grid[i][j] * grid[i+1][j], grid[i][j] * grid[i][j+1])
-            // grid[i][j].max = Math.max(grid[i][j] * grid[i+1][j].max, grid[i][j] * grid[i+1][j].min, grid[i][j] * grid[i][j+1].max, grid[i][j] * grid[i][j+1].min)
-            // grid[i][j].min = Math.min(grid[i][j] * grid[i+1][j].max, grid[i][j] * grid[i+1][j].min, grid[i][j] * grid[i][j+1].max, grid[i][j] * grid[i][j+1].min)
             grid[i][j] = {
                 max: Math.max(grid[i][j] * grid[i+1][j].max, grid[i][j] * grid[i+1][j].min, grid[i][j] * grid[i][j+1].max, grid[i][j] * grid[i][j+1].min),
                 min: Math.min(grid[i][j] * grid[i+1][j].max, grid[i][j] * grid[i+1][j].min, grid[i][j] * grid[i][j+1].max, grid[i][j] * grid[i][j+1].min)
             }
         }
 
-    }
-    
-    // console.log(grid);
-    
+    }  
     return (grid[0][0].max >= 0 ? grid[0][0].max  % m : -1);
-
-
 };
 
 

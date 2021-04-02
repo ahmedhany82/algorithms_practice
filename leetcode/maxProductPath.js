@@ -1,4 +1,4 @@
-// 1594. Maximum Non Negative Product in a Matrix
+// 1594. Maximum Non Negative Product in a Matrix - Medium
 
 const maxProductPath = function(grid) {
     

@@ -1,5 +1,5 @@
 // 931. Minimum Falling Path Sum - Medium
-
+// faster than 97.81% JS submissions, less than 91.97% submissions in memory usage
 
 const minFallingPathSum = function(matrix) {
 

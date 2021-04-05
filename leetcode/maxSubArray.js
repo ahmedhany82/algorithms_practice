@@ -2,9 +2,23 @@
 
 const maxSubArray = function(nums) {
 
+
+    if(nums.length === 1) return nums[0];
+
     const grid = Array(nums.length).fill().map(() => Array(nums.length).fill(0));
 
-    
+    let sum;
+    let max = -1000000;
+    for(let i = 0; i < nums.length; i++) {
+        sum = 0;
+        for(let j = i; j < nums.length; j++) {
+            sum += nums[j]; 
+            grid[i][j] = sum;
+            if(grid[i][j] > max) max = grid[i][j];
+        }
+    } 
+
+    return max;
     
 };
 

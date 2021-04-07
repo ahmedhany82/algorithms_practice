@@ -1,25 +1,37 @@
 // 53. Maximum Subarray - Easy
 
+// const maxSubArray = function(nums) {
+
+//     if(nums.length === 1) return nums[0];
+
+//     const grid = Array(nums.length).fill(0);
+
+//     let sum;
+//     let max;
+//     for(let i = 0; i < nums.length; i++) {
+//         sum = 0;
+//         max = -1000000;
+//         for(let j = i; j < nums.length; j++) {
+//             sum += nums[j]; 
+//             if(sum > max) max = sum;
+//         }
+//         grid[i] = max;
+//     } 
+
+//     return Math.max(...grid);
+    
+// };
+
+// using Kadane's Algorithm
 const maxSubArray = function(nums) {
 
-    if(nums.length === 1) return nums[0];
-
-    const grid = Array(nums.length).fill(0);
-
-    let sum;
-    let max;
-    for(let i = 0; i < nums.length; i++) {
-        sum = 0;
-        max = -1000000;
-        for(let j = i; j < nums.length; j++) {
-            sum += nums[j]; 
-            if(sum > max) max = sum;
-        }
-        grid[i] = max;
-    } 
-
-    return Math.max(...grid);
-    
+ let current_subarray = max_subarray = nums[0];
+ 
+ for(let i = 1; i < nums.length; i++) {
+     current_subarray = Math.max(nums[i], current_subarray + nums[i]);
+     max_subarray = Math.max(max_subarray, current_subarray);
+ }
+ return max_subarray;
 };
 
 

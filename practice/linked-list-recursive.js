@@ -15,7 +15,7 @@ class LinkedList {
             this.head = new Node(val);
             return;
         }
-        this._append(this.head, val)
+        this._append(this.head, val);
     }
 
     _append(node, val) {
@@ -27,17 +27,14 @@ class LinkedList {
     }
 
     print() {
-        let str = '';
-        this._print(this.head, str);
+        console.log(this._print(this.head));
     }
 
-    _print(node, str) {
+    _print(node) {
         if(node === null) {
-            console.log(str);
-            return;
+            return '';
         }
-        str += node.value + "->";
-        this._print(node.next, str);
+        return node.value + "->" + this._print(node.next);
     }
 
     contains(val) {
@@ -46,27 +43,38 @@ class LinkedList {
     }
 
     _contains(node, val) {
-        if(node !== null) {
-            if(node.value === val) {
-                return true;
-            }
-            return this._contains(node.next, val);
-        }
-        return false;
+        if(node === null) return false;
+        if(node.value === val) return true;
+        return this._contains(node.next, val);
     }
 }
 
 const list = new LinkedList();
-list.append("a");
-list.append("b");
-list.append("c");
-list.append("d");
+list.append(11);
+list.append(7);
+list.append(10);
+list.append(2);
 
 list.print();
 
-console.log(list.contains("a")); //true   
-console.log(list.contains("b")); //true 
-console.log(list.contains("t")); //false 
-console.log(list.contains("c")); //true 
-console.log(list.contains("d")); //true 
-console.log(list.contains("g")); //false
+// iterative sum of a linked list
+// const sumList = (head) => {
+
+//     let sum = 0;
+//     let curr = head;
+//     while(curr !== null) {
+//         sum += curr.value;
+//         curr = curr.next;
+//     }
+//     return sum;
+
+// };  // O(n) time, O(1) space
+
+// recursive sum of a linked list
+const sumList = (head) => {
+    
+    if(head === null) return 0;
+    return head.value + sumList(head.next);
+} // O(n) time, O(n) space
+
+console.log(sumList(list.head)); //30

@@ -80,3 +80,83 @@ const sumList = (head) => {
 } // O(n) time, O(n) space
 
 console.log(sumList(list.head)); //30
+
+// const deleteValue = (head, target) => {
+
+//     if(head.value === target) {
+//         let newHead = head.next;
+//         head.next = null;
+//         return newHead;
+//     }
+
+//     let prev = null;
+//     let curr = head;
+
+//     while(curr !== null) {
+//         if(curr.value === target) {
+//             prev.next = curr.next;
+//             curr.next = null;
+//             return head;
+//         }
+//         prev = curr;
+//         curr = curr.next;
+//     }
+//     return head;
+// };
+
+// recursive deleteValue
+const deleteValue = (head, target) => {
+
+    if(head.value === target) {
+        let newHead = head.next;
+        head.next = null;
+        return newHead;
+    }
+    _deleteValue(head, null, target);
+    return head;
+} // O(n) time and O(n) space
+
+const _deleteValue = (curr, prev, target) => {
+    
+    if(curr === null) {         /* This base case should be first to avoid accessing curr.value when curr is null */
+        return;
+    }
+
+    if(curr.value === target) {
+        prev.next = curr.next;
+        curr.next = null;
+        return;
+    }
+
+    _deleteValue(curr.next, curr, target);
+}
+
+const print = (head) => {
+    if(head === null) return;
+    console.log(head.value);
+    print(head.next);
+}
+
+
+const a = new Node("a");
+const b = new Node("b");
+const c = new Node("c");
+const d = new Node("d");
+
+a.next = b;
+b.next = c;
+c.next = d;
+
+// a->b->c->d
+
+print(a);
+
+let newHead = deleteValue(a, "a");
+
+console.log('---')
+print(newHead);
+
+let anotherNewHead = deleteValue(newHead, "b");
+
+console.log('---')
+print(anotherNewHead);

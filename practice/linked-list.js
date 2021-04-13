@@ -68,7 +68,7 @@ const deleteValue = (head, target) => {
         curr = curr.next;
     }
     return head;
-};
+};  // O(n) time, O(1) space
 
 
 const print = (head) => {

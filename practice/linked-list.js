@@ -1,4 +1,4 @@
-// practice linked lists from https://youtu.be/TDtVagwa3QQ
+// practice linked lists from https://youtube.com/playlist?list=PLxQ8cCJ6LyOar0c3BFaOS8E38eVT4fl-g
 
 class Node {
     constructor(value) {
@@ -46,6 +46,37 @@ class LinkedList {
     }
 }
 
+// given a head of a linked list and a target value, delete the node with this value
+const deleteValue = (head, target) => {
+
+    if(head.value === target) {
+        let newHead = head.next;
+        head.next = null;
+        return newHead;
+    }
+
+    let prev = null;
+    let curr = head;
+
+    while(curr !== null) {
+        if(curr.value === target) {
+            prev.next = curr.next;
+            curr.next = null;
+            return head;
+        }
+        prev = curr;
+        curr = curr.next;
+    }
+    return head;
+};
+
+
+const print = (head) => {
+    if(head === null) return;
+    console.log(head.value);
+    print(head.next);
+}
+
 const list = new LinkedList();
 list.append("a");
 list.append("b");
@@ -60,3 +91,26 @@ console.log(list.contains("t")); //false
 console.log(list.contains("c")); //true 
 console.log(list.contains("d")); //true 
 console.log(list.contains("g")); //false
+
+const a = new Node("a");
+const b = new Node("b");
+const c = new Node("c");
+const d = new Node("d");
+
+a.next = b;
+b.next = c;
+c.next = d;
+
+// a->b->c->d
+
+print(a);
+
+let newHead = deleteValue(a, "a");
+
+console.log('---')
+print(newHead);
+
+let anotherNewHead = deleteValue(newHead, "b");
+
+console.log('---')
+print(anotherNewHead);

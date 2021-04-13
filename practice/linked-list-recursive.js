@@ -1,3 +1,5 @@
+// practice linked lists from https://youtube.com/playlist?list=PLxQ8cCJ6LyOar0c3BFaOS8E38eVT4fl-g
+
 class Node {
     constructor(val) {
         this.value = val;

@@ -106,20 +106,35 @@ c.next = d;
 print(a);
 
 // iterative reverseList
+// const reverseList = (head) => {
+//     let prev = null;
+//     let curr = head;
+
+//     while(curr !== null) {
+
+//         const next = curr.next;
+//         curr.next = prev;
+
+//         prev = curr;
+//         curr = next;
+//     }
+//     return prev;
+// } // O(n) time, O(1) space
+
+// recursive reverseList -- could also be implemented with an optional parameter prev defaulted to null
 const reverseList = (head) => {
-    let prev = null;
-    let curr = head;
+    return _reverseList(head, null);
+} // O(n) time, O(n) space
 
-    while(curr !== null) {
+const _reverseList = (curr, prev) => {
 
-        const next = curr.next;
-        curr.next = prev;
-
-        prev = curr;
-        curr = next;
-    }
-    return prev;
+    if(curr === null) return prev;
+    const next = curr.next;
+    curr.next = prev;
+    return _reverseList(next, curr);
 }
+
+
 
 const newHead = reverseList(a);
 

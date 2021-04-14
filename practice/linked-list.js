@@ -83,14 +83,14 @@ list.append("b");
 list.append("c");
 list.append("d");
 
-list.print();
+// list.print();
 
-console.log(list.contains("a")); //true   
-console.log(list.contains("b")); //true 
-console.log(list.contains("t")); //false 
-console.log(list.contains("c")); //true 
-console.log(list.contains("d")); //true 
-console.log(list.contains("g")); //false
+// console.log(list.contains("a")); //true   
+// console.log(list.contains("b")); //true 
+// console.log(list.contains("t")); //false 
+// console.log(list.contains("c")); //true 
+// console.log(list.contains("d")); //true 
+// console.log(list.contains("g")); //false
 
 const a = new Node("a");
 const b = new Node("b");
@@ -105,12 +105,33 @@ c.next = d;
 
 print(a);
 
-let newHead = deleteValue(a, "a");
+// iterative reverseList
+const reverseList = (head) => {
+    let prev = null;
+    let curr = head;
 
-console.log('---')
+    while(curr !== null) {
+
+        const next = curr.next;
+        curr.next = prev;
+
+        prev = curr;
+        curr = next;
+    }
+    return prev;
+}
+
+const newHead = reverseList(a);
+
+console.log('---');
 print(newHead);
 
-let anotherNewHead = deleteValue(newHead, "b");
+// let newHead = deleteValue(a, "a");
 
-console.log('---')
-print(anotherNewHead);
+// console.log('---')
+// print(newHead);
+
+// let anotherNewHead = deleteValue(newHead, "b");
+ 
+// console.log('---')
+// print(anotherNewHead);

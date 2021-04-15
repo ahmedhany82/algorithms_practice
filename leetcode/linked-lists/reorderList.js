@@ -34,12 +34,60 @@ h.next = i;
 
 const reorderList = function(head) {
 
+    if(head.next === null) return head;
 
+    let curr = head;
+    let prev = null;
+    let index = 0;
+    while(curr !== null) {
+        index += 1;
+        curr = curr.next;
+    }
+    const mid = Math.ceil(index / 2);
 
+    curr = head;
+    let newHead = null;
+
+    index = 1;
+    while(curr !== null) {
+        if(index === mid) {
+            newHead = curr.next;
+            curr.next = null;
+        }
+        curr = curr.next;
+        index += 1;
+    }
+    curr = newHead;
+    while(curr !== null) {
+        const next = curr.next;
+        curr.next = prev;
+
+        prev = curr;
+        curr = next;
+    }
+    newHead = prev;
+
+    let curr1 = head;
+    let curr2 = newHead;
+
+    while(curr1 !== null && curr2 !== null) {
+        const temp1 = curr1.next;
+        const temp2 = curr2.next;
+        curr1.next = curr2;
+        curr2.next = temp1;
+        curr1 = temp1;
+        curr2 = temp2;
+    }
 
 };
 
 
 print(a);
+reorderList(a);
 console.log('---');
+print(a);
+console.log('------');
 print(e);
+console.log('---');
+reorderList(e);
+print(e)

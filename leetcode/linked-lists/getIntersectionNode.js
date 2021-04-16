@@ -40,5 +40,28 @@ console.log('-----');
 print(b1);
 
 const getIntersectionNode = function(headA, headB) {
+
+    if(headA === null || headB === null) return null;
     
+    let pointer1 = headA;
+    let pointer2 = headB;
+
+    while(pointer1 !== pointer2) {
+        if(pointer1 === null) {
+            pointer1 = headB;
+        } else {
+            pointer1 = pointer1.next;
+        }
+
+        if(pointer2 === null) {
+            pointer2 = headA;
+        } else {
+            pointer2 = pointer2.next;
+        }
+    }
+    return pointer1;  
 };
+
+console.log("--------");
+
+console.log(getIntersectionNode(a1, b1));

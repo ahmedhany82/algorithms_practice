@@ -38,35 +38,54 @@ print(c1);
 
 const removeNthFromEnd = function(head, n) {
 
-    if(head.next === null && n === 1) return null;
+    // if(head.next === null && n === 1) return null;
     
-    let runner1 = head;
-    let runner2 = head.next;
-    let prev = null;
+    // let runner1 = head;
+    // let runner2 = head.next;
+    // let prev = null;
     
-    let gap = 1;
+    // let gap = 1;
     
-    while(runner2.next !== null) {
+    // while(runner2.next !== null) {
         
-        runner2 = runner2.next;
-        gap += 1;
+    //     runner2 = runner2.next;
+    //     gap += 1;
         
-        if(gap === n || n === 1) {
-            prev = runner1;
-            runner1 = runner1.next;
-            gap -= 1;
-        }        
-    }
-    if(n === 1) {
-        runner1.next = null;
-        return head;
-    }
-    if(prev !== null) {
-        prev.next = runner1.next;
-    } else {
-        return head.next;
+    //     if(gap === n || n === 1) {
+    //         prev = runner1;
+    //         runner1 = runner1.next;
+    //         gap -= 1;
+    //     }        
+    // }
+    // if(n === 1) {
+    //     runner1.next = null;
+    //     return head;
+    // }
+    // if(prev !== null) {
+    //     prev.next = runner1.next;
+    // } else {
+    //     return head.next;
+    // }
+    
+    // return head;
+
+    /* code from https://youtu.be/XtYEEvrhemI */
+    let dummy = new Node(0);
+    dummy.next = head;
+    
+    let fast = dummy;
+    let slow = dummy;
+    
+    for(let i = 1; i <= n + 1; i++) {
+        fast = fast.next;
     }
     
-    return head;
+    while(fast !== null) {
+        slow = slow.next;
+        fast = fast.next;
+    }
+    
+    slow.next = slow.next.next;
+    return dummy.next;
     
 };

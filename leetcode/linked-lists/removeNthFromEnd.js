@@ -37,5 +37,36 @@ console.log('-----');
 print(c1);
 
 const removeNthFromEnd = function(head, n) {
+
+    if(head.next === null && n === 1) return null;
+    
+    let runner1 = head;
+    let runner2 = head.next;
+    let prev = null;
+    
+    let gap = 1;
+    
+    while(runner2.next !== null) {
+        
+        runner2 = runner2.next;
+        gap += 1;
+        
+        if(gap === n || n === 1) {
+            prev = runner1;
+            runner1 = runner1.next;
+            gap -= 1;
+        }        
+    }
+    if(n === 1) {
+        runner1.next = null;
+        return head;
+    }
+    if(prev !== null) {
+        prev.next = runner1.next;
+    } else {
+        return head.next;
+    }
+    
+    return head;
     
 };

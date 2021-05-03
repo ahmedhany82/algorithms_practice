@@ -12,7 +12,7 @@ var findDuplicate = function(nums) {
     } 
 };
 
-console.log([1,3,4,2,2]); //Answer: 2
-console.log([3,1,3,4,2]); //Answer: 3
-console.log([1,1]); //Answer: 1
-console.log([1,1,2]); //Answer: 1 
+console.log(findDuplicate([1,3,4,2,2])); //Answer: 2
+console.log(findDuplicate([3,1,3,4,2])); //Answer: 3
+console.log(findDuplicate([1,1])); //Answer: 1
+console.log(findDuplicate([1,1,2])); //Answer: 1 

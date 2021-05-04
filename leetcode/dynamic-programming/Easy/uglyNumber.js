@@ -1,3 +1,4 @@
+// 263. Ugly Number - Easy
 const isUgly = (n, memo={}) => {
     if(n in memo) return memo[n];
     if(n === 0) return false;

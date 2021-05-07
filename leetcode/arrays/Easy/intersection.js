@@ -15,3 +15,14 @@ var intersection = function(nums1, nums2) {
     return [...new Set(result)];
 };
 
+// using sets
+
+var intersection = function(nums1, nums2) {
+        
+    let set1 = new Set(nums1);
+    let set2 = new Set(nums2);
+    
+    let result = [...set1].filter(e => set2.has(e));
+    
+    return result;
+};

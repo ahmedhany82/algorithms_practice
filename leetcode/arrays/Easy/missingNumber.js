@@ -13,3 +13,16 @@ var missingNumber = function(nums) {
     }
         
 };
+
+var missingNumber = function(nums) {
+    
+    let n = nums.length;
+    let numSum = n * (n + 1) / 2;   
+      
+    for(let num of nums) {
+        numSum -= num;
+    }
+       
+    return numSum;
+       
+   }; 

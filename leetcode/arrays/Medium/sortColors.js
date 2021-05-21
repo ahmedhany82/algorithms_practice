@@ -28,3 +28,30 @@ var sortColors = function(nums) {
     }
     
 };
+
+
+
+
+var sortColors = function(nums) {
+    
+    let start = 0;
+    
+    for(let i = 0; i < nums.length; i++) {
+        if(nums[i] === 0) {
+            let tmp = nums[i];
+            nums[i] = nums[start];
+            nums[start] = tmp;
+            start += 1;
+        }
+    }
+    
+    for(let i = 0; i < nums.length; i++) {
+        if(nums[i] === 1) {
+            let tmp = nums[i];
+            nums[i] = nums[start];
+            nums[start] = tmp;
+            start += 1;            
+        }
+    }
+    
+};

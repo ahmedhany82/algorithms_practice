@@ -7,6 +7,7 @@ class NumIslands {
     private int n;
     private int m;
     private int count;
+    private int[] size;
     
     private int find(int p) {
         int root = p;
@@ -29,7 +30,13 @@ class NumIslands {
         
         if(pid == qid) return;
         
-        id[pid] = qid;
+        if(size[pid] < size[qid]) {
+            id[pid] = qid;
+            size[qid] += size[pid];
+        } else {
+            id[qid] = pid;
+            size[pid] += size[qid];
+        }
         count--;
     }
     
@@ -50,9 +57,11 @@ class NumIslands {
         n = grid[0].length;
         
         id = new int[m*n];
+        size = new int[m*n];
         
         for(int i = 0; i < m*n; i++) {
             id[i] = i;
+            size[i] = 1;
         }
         
         for(int i = 0; i < m; i++) {

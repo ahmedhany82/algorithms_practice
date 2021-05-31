@@ -5,6 +5,7 @@ class FindCircleNum {
     private int[] id;
     private int n;
     private int count;
+    private int[] size;
     
     private int find(int p) {
         int root = p;
@@ -23,7 +24,14 @@ class FindCircleNum {
         int pid = find(p);
         int qid = find(q);
         if(pid == qid) return;
-        id[pid] = qid;
+        
+        if(size[pid] < size[qid]) {
+            id[pid] = qid;
+            size[qid] += size[pid];
+        } else {
+            id[qid] = pid;
+            size[pid] += size[qid];
+        }
         count--;
     }
     
@@ -31,10 +39,12 @@ class FindCircleNum {
     public int findCircleNum(int[][] isConnected) {
         n = isConnected.length;
         id = new int[n];
+        size = new int[n];
         count = n;
         
         for(int i = 0; i < n; i++) {
             id[i] = i;
+            size[i] = 1;
         }
 
         for(int i = 0; i < n; i++) {

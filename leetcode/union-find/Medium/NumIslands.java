@@ -1,10 +1,9 @@
 // 200. Number of Islands - Medium
-// Using Union Find
+// Using Union Find with path compression
 
 class NumIslands {
     
     private int[] id;
-    private int[] size;
     private int n;
     private int m;
     private int count;
@@ -30,13 +29,7 @@ class NumIslands {
         
         if(pid == qid) return;
         
-        if(size[pid] < size[qid]) {
-            id[pid] = qid;
-            size[qid] += size[pid];
-        } else {
-            id[qid] = pid;
-            size[pid] += size[qid];
-        }
+        id[pid] = qid;
         count--;
     }
     
@@ -57,11 +50,9 @@ class NumIslands {
         n = grid[0].length;
         
         id = new int[m*n];
-        size = new int[m*n];
         
         for(int i = 0; i < m*n; i++) {
             id[i] = i;
-            size[i] = 1;
         }
         
         for(int i = 0; i < m; i++) {
